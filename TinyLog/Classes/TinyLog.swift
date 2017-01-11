@@ -11,7 +11,7 @@ import Foundation
 fileprivate class TinyLogDateFormatter {
     // MARK: Singleton
     fileprivate static let `default`: DateFormatter = {
-        var formatter = DateFormatter()
+        let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd HH:mm:ss.SSS"
         return formatter
     }()
