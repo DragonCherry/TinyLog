@@ -8,6 +8,10 @@
 
 import Foundation
 
+public class TinyLog {
+    public static var stripParameters: Bool = true
+}
+
 fileprivate class TinyLogDateFormatter {
     // MARK: Singleton
     fileprivate static let `default`: DateFormatter = {
@@ -25,9 +29,17 @@ fileprivate func fileName(_ filePath: String) -> String {
         return lastPathComponent
     }
 }
+
+fileprivate func functionNameByStrippingParameters(_ function: String) -> String {
+    if let startIndex = function.characters.index(of: "(") {
+        return function.substring(to: startIndex)
+    }
+    return function
+}
+
 public func log(_ msg: @autoclosure () -> Any, _ prefix: String = "⚫", _ file: String = #file, _ function: String = #function, _ line: Int = #line) {
     #if DEBUG
-        print("\(TinyLogDateFormatter.default.string(from: Date())) \(prefix)\(fileName(file)).\(function):\(line) - \(msg())")
+        print("\(TinyLogDateFormatter.default.string(from: Date())) \(prefix)\(fileName(file)).\(TinyLog.stripParameters ? functionNameByStrippingParameters(function) : function):\(line) - \(msg())")
     #endif
 }
 public func logi(_ msg: @autoclosure () -> Any, _ file: String = #file, _ function: String = #function, _ line: Int = #line) {
