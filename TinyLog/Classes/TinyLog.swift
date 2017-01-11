@@ -8,6 +8,15 @@
 
 import Foundation
 
+fileprivate class TinyLogDateFormatter {
+    // MARK: Singleton
+    fileprivate static let `default`: DateFormatter = {
+        var formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss.SSS"
+        return formatter
+    }()
+}
+
 fileprivate func fileName(_ filePath: String) -> String {
     let lastPathComponent = NSString(string: filePath).lastPathComponent
     if let name = lastPathComponent.components(separatedBy: ".").first {
@@ -18,7 +27,7 @@ fileprivate func fileName(_ filePath: String) -> String {
 }
 public func log(_ msg: @autoclosure () -> Any, _ prefix: String = "⚫", _ file: String = #file, _ function: String = #function, _ line: Int = #line) {
     #if DEBUG
-        print("\(prefix)\(fileName(file)).\(function):\(line) - \(msg())")
+        print("\(TinyLogDateFormatter.default.string(from: Date())) \(prefix)\(fileName(file)).\(function):\(line) - \(msg())")
     #endif
 }
 public func logi(_ msg: @autoclosure () -> Any, _ file: String = #file, _ function: String = #function, _ line: Int = #line) {
