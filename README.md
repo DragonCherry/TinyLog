@@ -21,13 +21,13 @@ logc("Printing critical log.")
 
 ```
 // Result
-2017-01-11 12:00:22.157 ⚫ViewController.viewDidLoad():16 - Printing default log, and it's regarded as verbose log.
-2017-01-11 12:00:22.158 💙ViewController.viewDidLoad():17 - Printing information log.
-2017-01-11 12:00:22.158 ⚫ViewController.viewDidLoad():18 - Printing verbose log.
-2017-01-11 12:00:22.158 💚ViewController.viewDidLoad():19 - Printing debug log.
-2017-01-11 12:00:22.159 💛ViewController.viewDidLoad():20 - Printing warning log.
-2017-01-11 12:00:22.159 ❤️ViewController.viewDidLoad():21 - Printing error log.
-2017-01-11 12:00:22.159 💔ViewController.viewDidLoad():22 - Printing critical log.
+2017-01-11 15:03:54.691 ⚫ViewController.viewDidLoad:16 - Printing default log, and it's regarded as verbose log.
+2017-01-11 15:03:54.693 💙ViewController.viewDidLoad:17 - Printing information log.
+2017-01-11 15:03:54.693 ⚫ViewController.viewDidLoad:18 - Printing verbose log.
+2017-01-11 15:03:54.693 💚ViewController.viewDidLoad:19 - Printing debug log.
+2017-01-11 15:03:54.693 💛ViewController.viewDidLoad:20 - Printing warning log.
+2017-01-11 15:03:54.693 ❤️ViewController.viewDidLoad:21 - Printing error log.
+2017-01-11 15:03:54.693 💔ViewController.viewDidLoad:22 - Printing critical log.
 
 ```
 
