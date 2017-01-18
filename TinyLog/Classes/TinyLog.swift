@@ -12,51 +12,60 @@ public class TinyLog {
     public static var stripParameters: Bool = true
 }
 
-fileprivate class TinyLogDateFormatter {
+internal class TinyLogDateFormatter {
     // MARK: Singleton
-    fileprivate static let `default`: DateFormatter = {
-        let formatter = DateFormatter()
+    static let current: NSDateFormatter = {
+        let formatter = NSDateFormatter()
         formatter.dateFormat = "yyyy-MM-dd HH:mm:ss.SSS"
         return formatter
     }()
 }
 
-fileprivate func fileName(_ filePath: String) -> String {
+internal func fileName(_ filePath: String) -> String {
     let lastPathComponent = NSString(string: filePath).lastPathComponent
-    if let name = lastPathComponent.components(separatedBy: ".").first {
+    
+    if let name = lastPathComponent.componentsSeparatedByString(".").first {
         return name
     } else {
         return lastPathComponent
     }
 }
 
-fileprivate func functionNameByStrippingParameters(_ function: String) -> String {
-    if let startIndex = function.characters.index(of: "(") {
-        return function.substring(to: startIndex)
+internal func functionNameByStrippingParameters(_ function: String) -> String {
+    
+    if let startIndex = function.characters.indexOf("(") {
+        return function.substringToIndex(startIndex)
+    } else {
+        return function
     }
-    return function
 }
 
-public func log(_ msg: @autoclosure () -> Any, _ prefix: String = "⚫", _ file: String = #file, _ function: String = #function, _ line: Int = #line) {
+public func log(@autoclosure _ msg: () -> AnyObject, _ prefix: String = "⚫", _ file: String = #file, _ function: String = #function, _ line: Int = #line) {
     #if DEBUG
-        print("\(TinyLogDateFormatter.default.string(from: Date())) \(prefix)\(fileName(file)).\(TinyLog.stripParameters ? functionNameByStrippingParameters(function) : function):\(line) - \(msg())")
+        print("\(TinyLogDateFormatter.current.stringFromDate(NSDate())) \(prefix)\(fileName(file)).\(TinyLog.stripParameters ? functionNameByStrippingParameters(function) : function):\(line) - \(msg())")
     #endif
 }
-public func logi(_ msg: @autoclosure () -> Any, _ file: String = #file, _ function: String = #function, _ line: Int = #line) {
+
+public func logi(@autoclosure _ msg: () -> AnyObject, _ file: String = #file, _ function: String = #function, _ line: Int = #line) {
     log(msg, "💙", file, function, line)
 }
-public func logv(_ msg: @autoclosure () -> Any, _ file: String = #file, _ function: String = #function, _ line: Int = #line) {
+
+public func logv(@autoclosure _ msg: () -> AnyObject, _ file: String = #file, _ function: String = #function, _ line: Int = #line) {
     log(msg, "⚫", file, function, line) // I put a black circle instead of black heart since it's available from iOS 10.2.
 }
-public func logd(_ msg: @autoclosure () -> Any, _ file: String = #file, _ function: String = #function, _ line: Int = #line) {
+
+public func logd(@autoclosure _ msg: () -> AnyObject, _ file: String = #file, _ function: String = #function, _ line: Int = #line) {
     log(msg, "💚", file, function, line)
 }
-public func logw(_ msg: @autoclosure () -> Any, _ file: String = #file, _ function: String = #function, _ line: Int = #line) {
+
+public func logw(@autoclosure _ msg: () -> AnyObject, _ file: String = #file, _ function: String = #function, _ line: Int = #line) {
     log(msg, "💛", file, function, line)
 }
-public func loge(_ msg: @autoclosure () -> Any, _ file: String = #file, _ function: String = #function, _ line: Int = #line) {
+
+public func loge(@autoclosure _ msg: () -> AnyObject, _ file: String = #file, _ function: String = #function, _ line: Int = #line) {
     log(msg, "❤️", file, function, line)
 }
-public func logc(_ msg: @autoclosure () -> Any, _ file: String = #file, _ function: String = #function, _ line: Int = #line) {
+
+public func logc(@autoclosure _ msg: () -> AnyObject, _ file: String = #file, _ function: String = #function, _ line: Int = #line) {
     log(msg, "💔", file, function, line)
 }
