@@ -13,6 +13,7 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         log("Printing default log, and it's regarded as verbose log.")
         logi("Printing information log.")
         logv("Printing verbose log.")
