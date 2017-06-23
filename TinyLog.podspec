@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
   s.name             = 'TinyLog'
   s.version          = '2.0.1'
-  s.summary          = 'Very simple logging utility.'
+  s.summary          = 'Simple and lightweight logging utility.'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
