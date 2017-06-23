@@ -38,32 +38,36 @@ fileprivate func functionNameByStrippingParameters(_ function: String) -> String
     }
 }
 
-public func log(_ msg: @autoclosure () -> Any, _ prefix: String = "⚫", _ file: String = #file, _ function: String = #function, _ line: Int = #line) {
+public func log(_ msg: Any? = nil, _ prefix: String = "⚫", _ file: String = #file, _ function: String = #function, _ line: Int = #line) {
     #if DEBUG
-        print("\(TinyLogDateFormatter.default.string(from: Date())) \(prefix)\(fileName(file)).\(TinyLog.stripParameters ? functionNameByStrippingParameters(function) : function):\(line) - \(msg())")
+        if let msg = msg {
+            print("\(TinyLogDateFormatter.default.string(from: Date())) \(prefix)\(fileName(file)).\(TinyLog.stripParameters ? functionNameByStrippingParameters(function) : function):\(line) - \(msg))")
+        } else {
+            print("\(TinyLogDateFormatter.default.string(from: Date())) \(prefix)\(fileName(file)).\(TinyLog.stripParameters ? functionNameByStrippingParameters(function) : function):\(line)")
+        }
     #endif
 }
 
-public func logi(_ msg: @autoclosure () -> Any, _ file: String = #file, _ function: String = #function, _ line: Int = #line) {
+public func logi(_ msg: Any?, _ file: String = #file, _ function: String = #function, _ line: Int = #line) {
     log(msg, "💙", file, function, line)
 }
 
-public func logv(_ msg: @autoclosure () -> Any, _ file: String = #file, _ function: String = #function, _ line: Int = #line) {
+public func logv(_ msg: Any?, _ file: String = #file, _ function: String = #function, _ line: Int = #line) {
     log(msg, "⚫", file, function, line) // I put a black circle instead of black heart since it's available from iOS 10.2.
 }
 
-public func logd(_ msg: @autoclosure () -> Any, _ file: String = #file, _ function: String = #function, _ line: Int = #line) {
+public func logd(_ msg: Any?, _ file: String = #file, _ function: String = #function, _ line: Int = #line) {
     log(msg, "💚", file, function, line)
 }
 
-public func logw(_ msg: @autoclosure () -> Any, _ file: String = #file, _ function: String = #function, _ line: Int = #line) {
+public func logw(_ msg: Any?, _ file: String = #file, _ function: String = #function, _ line: Int = #line) {
     log(msg, "💛", file, function, line)
 }
 
-public func loge(_ msg: @autoclosure () -> Any, _ file: String = #file, _ function: String = #function, _ line: Int = #line) {
+public func loge(_ msg: Any?, _ file: String = #file, _ function: String = #function, _ line: Int = #line) {
     log(msg, "❤️", file, function, line)
 }
     
-public func logc(_ msg: @autoclosure () -> Any, _ file: String = #file, _ function: String = #function, _ line: Int = #line) {
+public func logc(_ msg: Any?, _ file: String = #file, _ function: String = #function, _ line: Int = #line) {
     log(msg, "💔", file, function, line)
 }
