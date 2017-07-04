@@ -41,7 +41,7 @@ fileprivate func functionNameByStrippingParameters(_ function: String) -> String
 public func log(_ msg: Any? = nil, _ prefix: String = "⚫", _ file: String = #file, _ function: String = #function, _ line: Int = #line) {
     #if DEBUG
         if let msg = msg {
-            print("\(TinyLogDateFormatter.default.string(from: Date())) \(prefix)\(fileName(file)).\(TinyLog.stripParameters ? functionNameByStrippingParameters(function) : function):\(line) - \(msg))")
+            print("\(TinyLogDateFormatter.default.string(from: Date())) \(prefix)\(fileName(file)).\(TinyLog.stripParameters ? functionNameByStrippingParameters(function) : function):\(line) - \(msg)")
         } else {
             print("\(TinyLogDateFormatter.default.string(from: Date())) \(prefix)\(fileName(file)).\(TinyLog.stripParameters ? functionNameByStrippingParameters(function) : function):\(line)")
         }
