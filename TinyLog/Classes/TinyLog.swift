@@ -32,7 +32,7 @@ fileprivate func fileName(_ filePath: String) -> String {
 
 fileprivate func functionNameByStrippingParameters(_ function: String) -> String {
     if let startIndex = function.characters.index(of: "(") {
-        return function.substring(to: startIndex)
+        return String(function[...startIndex])
     } else {
         return function
     }
