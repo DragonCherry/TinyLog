@@ -10,7 +10,7 @@ import Foundation
 
 public class TinyLog {
     public static var stripParameters: Bool = true
-    public static var isShowLog = true
+    public static var isShowInfoLog = true
     public static var isShowErrorLog = true
 }
 
@@ -51,25 +51,25 @@ public func log(_ msg: Any? = nil, _ prefix: String = "⚫", _ file: String = #f
 }
 
 public func logi(_ msg: Any?, _ file: String = #file, _ function: String = #function, _ line: Int = #line) {
-    if TinyLog.isShowLog { log(msg, "💙", file, function, line) }
+    if TinyLog.isShowInfoLog { log(msg, "💙", file, function, line) }
 }
 
 public func logv(_ msg: Any?, _ file: String = #file, _ function: String = #function, _ line: Int = #line) {
-    if TinyLog.isShowLog { log(msg, "⚫", file, function, line) } // I put a black circle instead of black heart since it's available from iOS 10.2.
+    if TinyLog.isShowInfoLog { log(msg, "⚫", file, function, line) } // I put a black circle instead of black heart since it's available from iOS 10.2.
 }
 
 public func logd(_ msg: Any?, _ file: String = #file, _ function: String = #function, _ line: Int = #line) {
-    if TinyLog.isShowLog { log(msg, "💚", file, function, line) }
+    if TinyLog.isShowInfoLog { log(msg, "💚", file, function, line) }
 }
 
 public func logw(_ msg: Any?, _ file: String = #file, _ function: String = #function, _ line: Int = #line) {
-    if TinyLog.isShowLog && TinyLog.isShowErrorLog { log(msg, "💛", file, function, line) }
+    if TinyLog.isShowErrorLog { log(msg, "💛", file, function, line) }
 }
 
 public func loge(_ msg: Any?, _ file: String = #file, _ function: String = #function, _ line: Int = #line) {
-    if TinyLog.isShowLog && TinyLog.isShowErrorLog { log(msg, "❤️", file, function, line) }
+    if TinyLog.isShowErrorLog { log(msg, "❤️", file, function, line) }
 }
     
 public func logc(_ msg: Any?, _ file: String = #file, _ function: String = #function, _ line: Int = #line) {
-    if TinyLog.isShowLog && TinyLog.isShowErrorLog { log(msg, "💔", file, function, line) }
+    if TinyLog.isShowErrorLog { log(msg, "💔", file, function, line) }
 }
